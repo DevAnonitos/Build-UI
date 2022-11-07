@@ -1,14 +1,5 @@
-import html from "./core.js";
 
-const cars = ['BWM','Porsche', 'Mercedes'];
+import App from "./components/App.js";
+import { attach } from "./store.js";
 
-const isSuccess = false;
-
-const outPut = html`
-    <h1>${isSuccess}</h1>
-    <ul>
-        ${cars.map(car => `<li>${car}</li>`)}
-    </ul>
-`
-
-console.log(outPut);
+attach(App, document.getElementById('root'))

@@ -20,13 +20,17 @@ export function createStore(reducer) {
     }
 
     return {
-        attach: function (component, root) {
+        attach(component, root) {
             roots.set(root, component)
-            render();
+            render()
         },
         connect(selector = state => state){
             return component => (props, ...args) =>
-                component(Object.assign(), props, selector(state), ...args)
+                component(Object.assign({}, props, selector(state), ...args))
+        },
+        dispatch(action, ...args){
+            state = reducer(state, action, args);
+            render()
         }
     }
 }
